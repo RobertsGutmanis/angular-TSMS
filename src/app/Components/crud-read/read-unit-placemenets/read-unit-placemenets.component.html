@@ -1,0 +1,24 @@
+<div class="overflow-x-auto">
+  <table class="table table-zebra">
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>Klase</th>
+      <th>Virziens</th>
+      <th>Tips</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (placement of placemenets;track placement.id) {
+        <tr>
+          <td>{{ placement.id }}</td>
+          <td>{{ placement.class }}</td>
+          <td>{{ placement.direction }}</td>
+          <td>{{ placement.type }}</td>
+          <td>
+            <button class="btn btn-primary text-white rounded-md">Edit</button>
+          </td>
+        </tr>
+      }
+  </table>
+</div>

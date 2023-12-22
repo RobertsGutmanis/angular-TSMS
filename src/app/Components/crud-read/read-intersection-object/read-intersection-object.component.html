@@ -1,0 +1,27 @@
+<div class="overflow-x-auto">
+  <table class="table table-zebra">
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>krustojumas</th>
+      <th>objekta tips</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (object of objectsToDisplay;track object.id) {
+        <tr>
+          <td>{{ object.id }}</td>
+          <td>{{ object.intersection }}</td>
+          <td>{{ object.object_type }}</td>
+          <td>{{ object.longitude }}</td>
+          <td>{{ object.latitude }}</td>
+          <td>
+            <button class="btn btn-primary text-white rounded-md">Edit</button>
+          </td>
+        </tr>
+      }
+  </table>
+</div>

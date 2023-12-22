@@ -1,0 +1,15 @@
+<div class="flex items-center justify-center w-full h-full">
+  <div
+    class="container mx-auto bg-gray-300 sm:px-10 py-6 flex h-[70%] w-full flex-col items-start gap-3 overflow-scroll">
+
+    <div class="tabs tabs-bordered w-full" role="tablist">
+      @for (tab of tabs;track tab) {
+        <a role="tab" class="tab text-xl" [ngClass]="{'bg-gray-400': activeTab===tab}"
+           (click)="changeTab(tab)">{{ tab }}</a>
+      }
+    </div>
+    <div class="w-full">
+      <router-outlet class="w-full"></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="overflow-x-auto">
+  <table class="table table-zebra">
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>Nosaukums</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Rādiuss</th>
+      <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (intersection of intersections;track intersection.id) {
+        <tr>
+          <th>{{ intersection.id }}</th>
+          <td>{{ intersection.title }}</td>
+          <td>{{ intersection.latitude }}</td>
+          <td>{{ intersection.latitude }}</td>
+          <td>{{ intersection.radius }}</td>
+          <td>
+            <button class="btn btn-primary text-white rounded-md">Edit</button>
+          </td>
+        </tr>
+      }
+  </table>
+</div>

@@ -1,0 +1,26 @@
+<div class="overflow-x-auto">
+  <table class="table table-zebra">
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>objekta id</th>
+      <th>Ipašība pieder (id)</th>
+      <th>Atslēga</th>
+      <th>Vērtība</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (property of propertiesToDisplay;track property.id) {
+        <tr>
+          <td>{{ property.id }}</td>
+          <td>{{ property.serial_number }}</td>
+          <td>{{ property.parent_id }}</td>
+          <td>{{ property.key }}</td>
+          <td>{{ property.value }}</td>
+          <td>
+            <button class="btn btn-primary text-white rounded-md">Edit</button>
+          </td>
+        </tr>
+      }
+  </table>
+</div>
