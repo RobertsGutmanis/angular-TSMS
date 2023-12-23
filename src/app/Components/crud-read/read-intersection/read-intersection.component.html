@@ -19,9 +19,8 @@
           <td>{{ intersection.longitude }}</td>
           <td>{{ intersection.radius }}</td>
           <td>
-            <button class="btn btn-primary text-white rounded-md">Edit</button>
+            <button class="btn btn-primary text-white rounded-md" (click)="onEdit(intersection.id)">Edit</button>
           </td>
-        </tr>
-      }
+          }
   </table>
 </div>

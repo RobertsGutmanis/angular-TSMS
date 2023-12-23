@@ -1,4 +1,4 @@
-export interface DisplayUnits{
+export interface DisplayUnits {
   id: number;
   object_id: number;
   unit_type_id: number;

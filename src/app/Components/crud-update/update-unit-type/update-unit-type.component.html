@@ -1,11 +1,11 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="formGroup"
       class="max-w-sm mx-auto h-full w-full flex flex-col justify-center">
-  <h1 class="font-bold text-2xl">Izveidot objekta tipu:</h1>
+  <h1 class="font-bold text-2xl">Rediģēt vienības tipu:</h1>
   <div class="mb-5">
-    <label class="block mb-2 text-sm font-medium text-gray-900" for="intersection-lat">Objekta tips:</label>
+    <label class="block mb-2 text-sm font-medium text-gray-900" for="intersection-lat">Vienības tips:</label>
     <input
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      formControlName="type" id="intersection-lat" maxlength="25"
+      formControlName="type" id="intersection-lat"
       required
       type="text">
   </div>
@@ -14,7 +14,11 @@
     type="submit">
     Submit
   </button>
-
+  <button (click)="onDelete()"
+          class="mt-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          type="button">
+    Delete
+  </button>
   @if (successMessage === "success") {
     <p class="font-bold text-green-600">Vienības novietojums veiksmīgi izveidots!</p>
   } @else if (successMessage !== "success" && successMessage !== "none") {

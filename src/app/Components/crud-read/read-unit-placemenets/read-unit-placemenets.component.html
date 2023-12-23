@@ -16,7 +16,7 @@
           <td>{{ placement.direction }}</td>
           <td>{{ placement.type }}</td>
           <td>
-            <button class="btn btn-primary text-white rounded-md">Edit</button>
+            <button class="btn btn-primary text-white rounded-md" (click)="onEdit(placement.id)">Edit</button>
           </td>
         </tr>
       }

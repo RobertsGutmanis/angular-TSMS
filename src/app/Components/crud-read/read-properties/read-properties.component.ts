@@ -4,6 +4,7 @@ import {PropertyGet} from "../../../Interfaces/property-get.interface";
 import {Property} from "../../../Interfaces/property.interface";
 import {UnitGetSingle} from "../../../Interfaces/unit-get-single.interface";
 import {PropertyDisplay} from "../../../Interfaces/display-property.interface";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-read-properties',
@@ -15,7 +16,7 @@ import {PropertyDisplay} from "../../../Interfaces/display-property.interface";
 export class ReadPropertiesComponent implements OnInit {
   propertiesToDisplay: PropertyDisplay[] = [];
 
-  constructor(private getService: GetService) {
+  constructor(private getService: GetService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -41,9 +42,12 @@ export class ReadPropertiesComponent implements OnInit {
             currentProperty.serial_number = "0"
             this.propertiesToDisplay.push(currentProperty)
           }
-          console.log(this.propertiesToDisplay)
         })
       }
     })
+  }
+
+  onEdit(id: number): void {
+    this.router.navigate(["crud", "update", "property", id])
   }
 }

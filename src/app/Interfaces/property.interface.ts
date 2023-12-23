@@ -1,5 +1,5 @@
 export interface Property {
-  id?: number;
+  id: number;
   unit_id: number;
   parent_id: number;
   key: string;

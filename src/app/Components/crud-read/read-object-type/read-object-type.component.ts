@@ -3,6 +3,7 @@ import {GetService} from "../../../Services/get.service";
 import {ObjectType} from "../../../Interfaces/object_type.interface";
 import {ObjectTypeGet} from "../../../Interfaces/object_type-get.interface";
 import {HttpErrorResponse} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-read-object-type',
@@ -14,7 +15,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class ReadObjectTypeComponent implements OnInit {
   objectTypes!: ObjectType[];
 
-  constructor(private getService: GetService) {
+  constructor(private getService: GetService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -28,4 +29,7 @@ export class ReadObjectTypeComponent implements OnInit {
     })
   }
 
+  onEdit(id: number): void {
+    this.router.navigate(["crud", "update", "object-type", id])
+  }
 }

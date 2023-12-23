@@ -3,6 +3,7 @@ import {UnitType} from "../../../Interfaces/unit_type.interface";
 import {GetService} from "../../../Services/get.service";
 import {UnitTypeGet} from "../../../Interfaces/unit_type-get.interface";
 import {HttpErrorResponse} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-read-unit-type',
@@ -14,7 +15,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class ReadUnitTypeComponent implements OnInit {
   unitTypes!: UnitType[];
 
-  constructor(private getService: GetService) {
+  constructor(private getService: GetService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -27,4 +28,9 @@ export class ReadUnitTypeComponent implements OnInit {
       }
     })
   }
+
+  onEdit(id: number): void {
+    this.router.navigate(["crud", "update", "unit-type", id])
+  }
+
 }

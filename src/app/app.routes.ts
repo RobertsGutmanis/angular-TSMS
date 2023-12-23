@@ -23,6 +23,13 @@ import {
 } from "./Components/crud-read/read-unit-placemenets/read-unit-placemenets.component";
 import {ReadPropertiesComponent} from "./Components/crud-read/read-properties/read-properties.component";
 import {ReadUnitsComponent} from "./Components/crud-read/read-units/read-units.component";
+import {UpdateIntersectionComponent} from "./Components/crud-update/update-intersection/update-intersection.component";
+import {UpdateUnitTypeComponent} from "./Components/crud-update/update-unit-type/update-unit-type.component";
+import {
+  UpdateUnitPlacemenetComponent
+} from "./Components/crud-update/update-unit-placemenet/update-unit-placemenet.component";
+import {UpdatePropertyComponent} from "./Components/crud-update/update-property/update-property.component";
+import {UpdateObjectTypeComponent} from "./Components/crud-update/update-object-type/update-object-type.component";
 
 export const routes: Routes = [
   {path: '', component: MapComponent},
@@ -50,6 +57,16 @@ export const routes: Routes = [
           {path: 'units', component: ReadUnitsComponent},
         ]
       },
+      {
+        path: 'update', children: [
+          {path: 'intersection/:id', component: UpdateIntersectionComponent},
+          {path: 'unit-type/:id', component: UpdateUnitTypeComponent},
+          {path: 'unit-placement/:id', component: UpdateUnitPlacemenetComponent},
+          {path: 'property/:id', component: UpdatePropertyComponent},
+          {path: 'object-type/:id', component: UpdateObjectTypeComponent},
+        ]
+      }
     ]
   },
+  {path: "**", redirectTo: 'crud/create'}
 ];

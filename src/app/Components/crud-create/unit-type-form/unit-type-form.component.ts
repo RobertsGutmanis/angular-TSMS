@@ -24,21 +24,22 @@ export class UnitTypeFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.formGroup.status === "VALID") {
-      this.storeService.storeUnitType(this.formGroup.value)
-        .subscribe({
-          next: (response: any): void => {
-            if (response.success) {
-              this.successMessage = "success";
-              this.formGroup.reset();
-            }
-          },
-          error: (error: HttpErrorResponse): void => {
-            this.successMessage = "error";
-          }
-        })
-    } else {
-      this.successMessage = "error";
+    if (this.formGroup.status !== "VALID") {
+      this.successMessage = "Forma nepareizi aizpildīta!"
+      return
     }
+
+    this.storeService.storeUnitType(this.formGroup.value)
+      .subscribe({
+        next: (response: any): void => {
+          if (response.success) {
+            this.successMessage = "success";
+            this.formGroup.reset();
+          }
+        },
+        error: (error: HttpErrorResponse): void => {
+          this.successMessage = error.error.message
+        }
+      })
   }
 }

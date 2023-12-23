@@ -72,28 +72,27 @@ export class UnitsFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.formGroup.status === "VALID") {
-      if (this.formGroup.value.management_ipv4 === "") {
-        this.formGroup.value.management_ipv4 = "null"
-      }
-      if (this.formGroup.value.management_ipv6 === "") {
-        this.formGroup.value.management_ipv6 = "null"
-      }
-      delete this.formGroup.value.intersection_id;
-      console.log(this.formGroup.value)
-      this.storeService.storeUnits(this.formGroup.value).subscribe({
-        next: (respons: any): void => {
-          this.successMessage = "success"
-          this.formGroup.reset()
-        },
-        error: (error: HttpErrorResponse): void => {
-          this.successMessage = "error"
-        }
-      })
-    } else {
-      console.log(3)
-      this.successMessage = "error"
+    if (this.formGroup.status !== "VALID") {
+      this.successMessage = "Forma nepareizi aizpildīta!"
+      return
     }
+
+    if (this.formGroup.value.management_ipv4 === "") {
+      this.formGroup.value.management_ipv4 = "null"
+    }
+    if (this.formGroup.value.management_ipv6 === "") {
+      this.formGroup.value.management_ipv6 = "null"
+    }
+    delete this.formGroup.value.intersection_id;
+    this.storeService.storeUnits(this.formGroup.value).subscribe({
+      next: (respons: any): void => {
+        this.successMessage = "success"
+        this.formGroup.reset()
+      },
+      error: (error: HttpErrorResponse): void => {
+        this.successMessage = error.error.message
+      }
+    })
   }
 
   onSelectIntersection(): void {

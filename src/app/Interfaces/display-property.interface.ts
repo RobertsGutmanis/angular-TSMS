@@ -1,5 +1,5 @@
 export interface PropertyDisplay {
-  id?: number;
+  id: number;
   serial_number: string;
   parent_id: number;
   key: string;

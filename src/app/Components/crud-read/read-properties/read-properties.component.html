@@ -3,7 +3,7 @@
     <thead>
     <tr>
       <th>id</th>
-      <th>objekta id</th>
+      <th>Vienibas serijas nr.</th>
       <th>Ipašība pieder (id)</th>
       <th>Atslēga</th>
       <th>Vērtība</th>
@@ -18,7 +18,7 @@
           <td>{{ property.key }}</td>
           <td>{{ property.value }}</td>
           <td>
-            <button class="btn btn-primary text-white rounded-md">Edit</button>
+            <button class="btn btn-primary text-white rounded-md" (click)="onEdit(property.id)">Edit</button>
           </td>
         </tr>
       }

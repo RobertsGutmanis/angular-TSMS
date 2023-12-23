@@ -13,7 +13,7 @@
     </tr>
     </thead>
     <tbody>
-      @for (unit of displayUnits; track unit.id) {
+      @for (unit of displayUnits;track unit.id) {
         <tr>
           <td>{{ unit.id }}</td>
           <td>{{ unit.object_id }}</td>
@@ -21,8 +21,8 @@
           <td>{{ unit.unit_type }}</td>
           <td>{{ unit.unit_placement_id }}</td>
           <td>{{ unit.serial_number }}</td>
-          <td>{{ unit.ipv4}}</td>
-          <td>{{ unit.ipv6}}</td>
+          <td>{{ unit.ipv4 }}</td>
+          <td>{{ unit.ipv6 }}</td>
           <td>
             <button class="btn btn-primary text-white rounded-md">Edit</button>
           </td>

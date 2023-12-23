@@ -52,19 +52,19 @@ export class IntersectionObjectFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.formGroup.status === "VALID") {
-      this.storeService.storeIntersectionObject(this.formGroup.value)
-        .subscribe({
-          next: (response: any): void => {
-            this.successMessage = "success";
-            this.formGroup.reset()
-          },
-          error: (error: HttpErrorResponse) => {
-            this.successMessage = "error";
-          }
-        })
-    } else {
-      this.successMessage = "error";
+    if (this.formGroup.status !== "VALID") {
+      this.successMessage = "Forma nepareizi aizpildīta!"
+      return
     }
+    this.storeService.storeIntersectionObject(this.formGroup.value)
+      .subscribe({
+        next: (response: any): void => {
+          this.successMessage = "success";
+          this.formGroup.reset()
+        },
+        error: (error: HttpErrorResponse): void => {
+          this.successMessage = error.error.message;
+        }
+      })
   }
 }

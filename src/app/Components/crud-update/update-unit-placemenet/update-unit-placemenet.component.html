@@ -1,42 +1,42 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="formGroup"
       class="max-w-sm mx-auto h-full w-full flex flex-col justify-center">
-  <h1 class="font-bold text-2xl">Izveidot krustojumu:</h1>
+  <h1 class="font-bold text-2xl">Rediģēt vienības novietojumu:</h1>
   <div class="mb-5">
-    <label class="block mb-2 text-sm font-medium text-gray-900" for="intersection-title">Nosaukums</label>
-    <input
+    <label class="block mb-2 text-sm font-medium text-gray-900 " for="unit-id">Klase:</label>
+    <select
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      formControlName="title" id="intersection-title" maxlength="50"
-      required
-      type="text">
+      formControlName="class"
+      id="unit-id">
+      <option disabled selected>Izvēlaties klasi</option>
+      <option value="V">V</option>
+      <option value="GP">GP</option>
+    </select>
   </div>
   <div class="mb-5">
-    <label class="block mb-2 text-sm font-medium text-gray-900" for="intersection-lat">Platums (Latitude)</label>
+    <label class="block mb-2 text-sm font-medium text-gray-900" for="direction">Virziens</label>
     <input
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      formControlName="latitude" id="intersection-lat" max="90" min="-90"
+      formControlName="direction" id="direction"
       required
       type="number">
   </div>
   <div class="mb-5">
-    <label class="block mb-2 text-sm font-medium text-gray-900" for="intersection-lng">Garums (Longitute)</label>
+    <label class="block mb-2 text-sm font-medium text-gray-900" for="type">Tips</label>
     <input
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      formControlName="longitude" id="intersection-lng" max="180" min="-180"
-      required
-      type="number">
-  </div>
-  <div class="mb-5">
-    <label class="block mb-2 text-sm font-medium text-gray-900" for="intersection-radius">Rādiuss</label>
-    <input
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      formControlName="radius" id="intersection-radius"
-      required
-      type="number">
+      formControlName="type" id="type"
+      maxlength="5"
+      required type="text">
   </div>
   <button
     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
     type="submit">
     Submit
+  </button>
+  <button (click)="onDelete()"
+          class="mt-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          type="button">
+    Delete
   </button>
   @if (successMessage === "success") {
     <p class="font-bold text-green-600">Vienības novietojums veiksmīgi izveidots!</p>

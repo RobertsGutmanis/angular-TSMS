@@ -58,7 +58,11 @@ export class GetService {
     return this.http.get(`http://127.0.0.1:8000/api/v1/units/${id}`)
   }
 
-  getSingleUnitType(id: number): Observable<any>{
+  getSingleUnitType(id: number): Observable<any> {
     return this.http.get(`http://127.0.0.1:8000/api/v1/unit-types/${id}`)
+  }
+
+  getSingleUnitPlacemenet(id: number): Observable<any> {
+    return this.http.get(`http://127.0.0.1:8000/api/v1/unit-placements/${id}`)
   }
 }

@@ -2,7 +2,9 @@
   <div class="font-bold text-2xl grid-form-1">Izveidot vienības:</div>
   <div class="grid-form-2">
     <label class="block mb-2 text-sm font-medium text-gray-900 w-full " for="object-id">Krustojums:</label>
-    <select (change)="onSelectIntersection()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="intersection_id"
+    <select (change)="onSelectIntersection()"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            formControlName="intersection_id"
             id="object-id">
       <option disabled selected>Izvēlaties krustojumu</option>
       @for (intersection of intersections;track intersection.id) {
@@ -14,8 +16,10 @@
     <div class="mb-5">
       <label class="block mb-2 text-sm font-medium text-gray-900 " for="intersection-object-id">Krustojuma
         objekts:</label>
-      <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="intersection_object_id"
-              id="intersection-object-id">
+      <select
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        formControlName="intersection_object_id"
+        id="intersection-object-id">
         <option disabled selected>Izvēlaties krustojuma objektu:</option>
         @for (intersectionObject of intersectionObjects;track intersectionObject.id) {
           <option [value]="intersectionObject.id">{{ intersectionObject.objectType }}</option>
@@ -24,8 +28,10 @@
     </div>
     <div class="mb-5">
       <label class="block mb-2 text-sm font-medium text-gray-900 " for="unit-type-id">Vienības tips:</label>
-      <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="unit_type_id"
-              id="unit-type-id">
+      <select
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        formControlName="unit_type_id"
+        id="unit-type-id">
         <option disabled selected>Izvēlaties vienības tipu</option>
         @for (unitType of unitTypes;track unitType.id) {
           <option [value]="unitType.id">{{ unitType.type }}</option>
@@ -34,8 +40,10 @@
     </div>
     <div class="mb-5">
       <label class="block mb-2 text-sm font-medium text-gray-900 " for="unit-placement-id">Vienības novietojums:</label>
-      <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="unit_placement_id"
-              id="unit-placement-id">
+      <select
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        formControlName="unit_placement_id"
+        id="unit-placement-id">
         <option disabled selected>Izvēlaties vienības novietojumu</option>
         @for (placement of unitPLacements;track placement.id) {
           <option [value]="placement.id">{{ placement.type }}</option>
@@ -46,28 +54,35 @@
   <div class="grid-form-4">
     <div class="mb-5">
       <label class="block mb-2 text-sm font-medium text-gray-900" for="serialnum">Sērijas nr.</label>
-      <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="serial_number" id="serialnum" maxlength="20"
-             required
-             type="text">
+      <input
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        formControlName="serial_number" id="serialnum" maxlength="20"
+        required
+        type="text">
     </div>
     <div class="mb-5">
       <label class="block mb-2 text-sm font-medium text-gray-900" for="ipv4">IPv4</label>
-      <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="management_ipv4" id="ipv4" maxlength="15"
-             type="text">
+      <input
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        formControlName="management_ipv4" id="ipv4" maxlength="15"
+        type="text">
     </div>
     <div class="mb-5">
       <label class="block mb-2 text-sm font-medium text-gray-900" for="ipv6">IPv6</label>
-      <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="management_ipv6" id="ipv6" maxlength="39"
-             type="text">
+      <input
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        formControlName="management_ipv6" id="ipv6" maxlength="39"
+        type="text">
     </div>
   </div>
   @if (successMessage === "success") {
-    <p class="font-bold text-green-600">Objekta tips veiksmīgi izveidots!</p>
-  } @else if (successMessage === "error") {
-    <p class="font-bold text-red-600">Radusies kļūda!</p>
+    <p class="font-bold text-green-600">Vienības novietojums veiksmīgi izveidots!</p>
+  } @else if (successMessage !== "success" && successMessage !== "none") {
+    <p class="font-bold text-red-600">{{ successMessage }}</p>
   }
-  <button class="grid-form-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-          type="submit">
+  <button
+    class="grid-form-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+    type="submit">
     Submit
   </button>
 </form>

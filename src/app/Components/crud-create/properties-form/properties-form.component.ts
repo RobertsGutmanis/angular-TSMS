@@ -52,27 +52,29 @@ export class PropertiesFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.formGroup.status === "VALID") {
-      if (this.formGroup.value.parent_id === "") {
-        this.formGroup.removeControl('parent_id')
-      } else if (this.formGroup.value.unit_id === "") {
-        this.formGroup.removeControl('unit_id')
-      }
-      console.log(this.formGroup.value)
-      this.storeService.storeProperty(this.formGroup.value).subscribe({
-        next: (response: any): void => {
-          if (response.success) {
-            this.successMessage = "success";
-            this.formGroup.reset();
-          }
-        },
-        error: (error: HttpErrorResponse): void => {
-          this.successMessage = "error";
-        }
-      })
-    } else {
-      this.successMessage = "error";
+
+    if (this.formGroup.status !== "VALID") {
+      this.successMessage = "Forma nepareizi aizpildīta!"
+      return
     }
+
+    if (this.formGroup.value.parent_id === "") {
+      this.formGroup.removeControl('parent_id')
+    } else if (this.formGroup.value.unit_id === "") {
+      this.formGroup.removeControl('unit_id')
+    }
+    this.storeService.storeProperty(this.formGroup.value).subscribe({
+      next: (response: any): void => {
+        if (response.success) {
+          this.successMessage = "success";
+          this.formGroup.reset();
+        }
+      },
+      error: (error: HttpErrorResponse): void => {
+        this.successMessage = error.error.message
+      }
+    })
+
   }
 
   disableParent(): void {

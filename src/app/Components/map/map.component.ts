@@ -1,10 +1,9 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import * as L from "leaflet";
 import {Intersection} from "../../Interfaces/intersection.interfrace";
 import {GetService} from "../../Services/get.service";
 import {IntersectionGet} from "../../Interfaces/Intersection-get.interface";
-import "leaflet/dist/images/marker-shadow.png";
 import * as Marker from "../../markers";
 import {IntersectionObjectGet} from "../../Interfaces/intersection_object-get.interface";
 import {IntersectionObject} from "../../Interfaces/intersection_object.interface";
@@ -12,7 +11,6 @@ import {IntersectionGetSingle} from "../../Interfaces/intersection-get-single.in
 import {HttpErrorResponse} from "@angular/common/http";
 import {DisplayIntersectionObject} from "../../Interfaces/display-intersectionObject.interface";
 import {ObjectTypeGetSingle} from "../../Interfaces/object-type-get-single.interface";
-import {DomEvent} from "leaflet";
 
 @Component({
   selector: 'app-map',
@@ -29,22 +27,8 @@ export class MapComponent implements AfterViewInit {
   // @ts-ignore
   private map: any;
 
-  private initMap(): void {
-    this.map = L.map('map', {
-      center: [56.65126976898748, 23.728884557751268],
-      zoomDelta: 1,
-      zoom: 14
-    });
-    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      minZoom: 5,
-    });
-    tiles.addTo(this.map);
-  }
-
   constructor(private getService: GetService) {
   }
-
 
   ngAfterViewInit(): void {
     this.initMap();
@@ -64,7 +48,7 @@ export class MapComponent implements AfterViewInit {
   }
 
   fetchIntersections(layerGroup: any): void {
-    if(this.intersection.length===0){
+    if (this.intersection.length === 0) {
       this.getService.getIntersections().subscribe({
         next: (response: IntersectionGet): void => {
           this.intersection = response.data
@@ -74,13 +58,13 @@ export class MapComponent implements AfterViewInit {
           alert("Radās kļūda iegūstot datus no servera!")
         }
       })
-    }else{
+    } else {
       this.showIntersections(layerGroup)
     }
   }
 
-  fetchObjects(layerGroup: any, currentZoom: number): void{
-    if(this.objects.length===0){
+  fetchObjects(layerGroup: any, currentZoom: number): void {
+    if (this.objects.length === 0) {
       this.getService.getIntersectionObjects().subscribe({
         next: (response: IntersectionObjectGet): void => {
           response.data.forEach((object: IntersectionObject): void => {
@@ -107,8 +91,8 @@ export class MapComponent implements AfterViewInit {
           })
         }
       })
-    }else{
-      if(currentZoom>=18){
+    } else {
+      if (currentZoom >= 18) {
         layerGroup.clearLayers()
         this.showOBjects(layerGroup)
       }
@@ -137,10 +121,11 @@ export class MapComponent implements AfterViewInit {
           `);
     })
   }
-  showOBjects(layerGroup: any): void{
-        this.objects.forEach((object: DisplayIntersectionObject): void=> {
-          const myMarker: any = L.marker([object.latitude, object.longitude], {icon: Marker.blueIcon}).addTo(layerGroup);
-          myMarker.bindPopup(`
+
+  showOBjects(layerGroup: any): void {
+    this.objects.forEach((object: DisplayIntersectionObject): void => {
+      const myMarker: any = L.marker([object.latitude, object.longitude], {icon: Marker.blueIcon}).addTo(layerGroup);
+      myMarker.bindPopup(`
             <h2 class="font-bold text-md">${object.intersection}</h2>
             <button onclick="my_modal_1.showModal()" class="px-5 py-1 w-full text-xs font-medium text-center inline-flex items-center justify-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Info</button>
             <dialog id="my_modal_1" class="modal">
@@ -158,6 +143,19 @@ export class MapComponent implements AfterViewInit {
               </div>
             </dialog>
           `);
-        })
+    })
+  }
+
+  private initMap(): void {
+    this.map = L.map('map', {
+      center: [56.65126976898748, 23.728884557751268],
+      zoomDelta: 1,
+      zoom: 14
+    });
+    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      minZoom: 5,
+    });
+    tiles.addTo(this.map);
   }
 }
