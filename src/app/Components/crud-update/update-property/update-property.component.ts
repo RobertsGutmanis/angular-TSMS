@@ -47,7 +47,7 @@ export class UpdatePropertyComponent implements OnInit {
         this.units = response.data;
       },
       error: (error: HttpErrorResponse): void => {
-        alert("Radās kļūda iegūstot datus no servera!")
+        alert(error.error.message)
       }
     })
 
@@ -56,7 +56,7 @@ export class UpdatePropertyComponent implements OnInit {
         this.properties = response.data;
       },
       error: (error: HttpErrorResponse): void => {
-        alert("Radās kļūda iegūstot datus no servera!")
+        alert(error.error.message)
       }
     })
 

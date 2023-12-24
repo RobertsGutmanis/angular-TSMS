@@ -4,6 +4,7 @@ import {UnitGet} from "../../../Interfaces/unit-get.interface";
 import {Unit} from "../../../Interfaces/unit.interface";
 import {UnitTypeGetSingle} from "../../../Interfaces/unit_type-get-single.interface";
 import {DisplayUnits} from "../../../Interfaces/display-units.interface";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-read-units',
@@ -15,14 +16,13 @@ import {DisplayUnits} from "../../../Interfaces/display-units.interface";
 export class ReadUnitsComponent implements OnInit {
   displayUnits: DisplayUnits[] = [];
 
-  constructor(private getService: GetService) {
+  constructor(private getService: GetService, private router: Router) {
 
   }
 
   ngOnInit(): void {
     this.getService.getUnits().subscribe({
       next: (response: UnitGet): void => {
-        console.table(response.data)
         response.data.forEach((unit: Unit): void => {
           let currentUnit: DisplayUnits = {
             id: unit.id,
@@ -43,6 +43,10 @@ export class ReadUnitsComponent implements OnInit {
         })
       }
     })
+  }
+
+  onEdit(id: number): void{
+    this.router.navigate(["crud/update/unit", id])
   }
 
 }

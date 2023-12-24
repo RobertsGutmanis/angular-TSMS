@@ -1,5 +1,5 @@
 export interface DisplayIntersectionObject {
-  id?: number;
+  id: number;
   intersection: string;
   object_type: string;
   latitude: number;

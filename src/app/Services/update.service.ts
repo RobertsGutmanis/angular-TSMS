@@ -6,6 +6,8 @@ import {UnitType} from "../Interfaces/unit_type.interface";
 import {UnitPlacemenet} from "../Interfaces/unit_placement.interface";
 import {Property} from "../Interfaces/property.interface";
 import {ObjectType} from "../Interfaces/object_type.interface";
+import {Unit} from "../Interfaces/unit.interface";
+import {IntersectionObject} from "../Interfaces/intersection_object.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +35,13 @@ export class UpdateService {
 
   updateObjectType(id: number, type: ObjectType): Observable<any> {
     return this.http.patch(`http://127.0.0.1:8000/api/v1/object-types/${id}`, type)
+  }
+
+  updateUnit(id: number, unit: Unit): Observable<any>{
+    return this.http.patch(`http://127.0.0.1:8000/api/v1/units/${id}`, unit)
+  }
+
+  updateObject(id: number, object: IntersectionObject): Observable<any>{
+    return this.http.patch(`http://127.0.0.1:8000/api/v1/objects/${id}`, object)
   }
 }

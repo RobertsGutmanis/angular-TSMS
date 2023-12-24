@@ -33,7 +33,7 @@ export class UpdateUnitTypeComponent implements OnInit {
         })
       },
       error: (error: HttpErrorResponse): void => {
-        alert("Servera kļūda!")
+        alert(error.error.message)
         this.router.navigate(['crud/read/unit-type'])
       }
     })
@@ -66,7 +66,7 @@ export class UpdateUnitTypeComponent implements OnInit {
         this.router.navigate(["crud/read/unit-type"])
       },
       error: (error: HttpErrorResponse): void => {
-        alert("Servera kļūda!")
+        this.successMessage = error.error.message
       }
     })
   }

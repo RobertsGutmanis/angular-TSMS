@@ -5,14 +5,7 @@ import {Router, RouterOutlet} from "@angular/router";
   selector: 'app-crud-create',
   standalone: true,
   imports: [
-    // IntersectionFormComponent,
-    // IntersectionObjectFormComponent,
-    // ObjectTypeFormComponent,
-    // PropertiesFormComponent,
-    // UnitPlacementFormComponent,
-    // UnitTypeFormComponent,
     RouterOutlet,
-    // RouterLink
   ],
   templateUrl: './crud-create.component.html',
   styleUrl: './crud-create.component.scss'

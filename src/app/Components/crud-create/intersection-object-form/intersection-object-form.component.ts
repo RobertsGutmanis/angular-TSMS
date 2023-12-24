@@ -20,7 +20,6 @@ export class IntersectionObjectFormComponent implements OnInit {
   intersections!: Intersection[];
   objectTypes!: ObjectType[];
   successMessage: string = "none"
-  numRegex: string = "^\\d*(\\.\\d{0,2})?$";
 
   constructor(private storeService: StoreService, private getService: GetService) {
   }
@@ -38,7 +37,7 @@ export class IntersectionObjectFormComponent implements OnInit {
         this.intersections = response.data;
       },
       error: (error: HttpErrorResponse): void => {
-        alert("Radās kļūda iegūstot datus no servera!")
+        alert(error.error.message)
       }
     })
     this.getService.getObjectTypes().subscribe({
@@ -46,7 +45,7 @@ export class IntersectionObjectFormComponent implements OnInit {
         this.objectTypes = response.data
       },
       error: (error: HttpErrorResponse): void => {
-        alert("Radās kļūda iegūstot datus no servera!")
+        alert(error.error.message)
       }
     })
   }

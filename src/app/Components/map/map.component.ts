@@ -11,6 +11,8 @@ import {IntersectionGetSingle} from "../../Interfaces/intersection-get-single.in
 import {HttpErrorResponse} from "@angular/common/http";
 import {DisplayIntersectionObject} from "../../Interfaces/display-intersectionObject.interface";
 import {ObjectTypeGetSingle} from "../../Interfaces/object-type-get-single.interface";
+import {ObjectsExpandedGet} from "../../Interfaces/objects_expanded-get.interface";
+import {ObjectsExpanded} from "../../Interfaces/objects_expanded.interface";
 
 @Component({
   selector: 'app-map',
@@ -23,7 +25,7 @@ import {ObjectTypeGetSingle} from "../../Interfaces/object-type-get-single.inter
 })
 export class MapComponent implements AfterViewInit {
   intersection: Intersection[] = []
-  objects: DisplayIntersectionObject[] = []
+  objects: ObjectsExpanded[] = []
   // @ts-ignore
   private map: any;
 
@@ -65,30 +67,23 @@ export class MapComponent implements AfterViewInit {
 
   fetchObjects(layerGroup: any, currentZoom: number): void {
     if (this.objects.length === 0) {
+      this.getService.getObjectsExpanded().subscribe({
+        next: (response: ObjectsExpandedGet): void=>{
+          this.objects = response.data
+          console.log(this.objects[0])
+        },
+        error: (error: HttpErrorResponse): void=>{
+          alert(error.error.message)
+        }
+      })
+      this.getService.getIntersections().subscribe({
+        next: (value: any): void=>{
+          console.log(value.data[0])
+        }
+      })
       this.getService.getIntersectionObjects().subscribe({
-        next: (response: IntersectionObjectGet): void => {
-          response.data.forEach((object: IntersectionObject): void => {
-
-            let intersectionDisplay: DisplayIntersectionObject = {
-              intersection: "",
-              object_type: "",
-              latitude: object.latitude,
-              longitude: object.longitude
-            }
-
-            this.getService.getSingleIntersection(object.intersection_id).subscribe({
-              next: (response: IntersectionGetSingle): void => {
-                intersectionDisplay.intersection = response.data.title
-
-                this.getService.getSingleObjectType(object.object_type_id).subscribe({
-                  next: (response: ObjectTypeGetSingle): void => {
-                    intersectionDisplay.object_type = response.data.type
-                    this.objects.push(intersectionDisplay)
-                  }
-                })
-              }
-            })
-          })
+        next: (value: any): void=>{
+          console.log(value.data[0])
         }
       })
     } else {
@@ -123,18 +118,18 @@ export class MapComponent implements AfterViewInit {
   }
 
   showOBjects(layerGroup: any): void {
-    this.objects.forEach((object: DisplayIntersectionObject): void => {
+    this.objects.forEach((object: ObjectsExpanded): void => {
       const myMarker: any = L.marker([object.latitude, object.longitude], {icon: Marker.blueIcon}).addTo(layerGroup);
       myMarker.bindPopup(`
-            <h2 class="font-bold text-md">${object.intersection}</h2>
+            <h2 class="font-bold text-md">${object.title}</h2>
             <button onclick="my_modal_1.showModal()" class="px-5 py-1 w-full text-xs font-medium text-center inline-flex items-center justify-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Info</button>
             <dialog id="my_modal_1" class="modal">
               <div class="modal-box">
-                <h3 class="font-bold text-lg">${object.intersection} - ${object.object_type}</h3>
+                <h3 class="font-bold text-lg">${object.title} - ${object.type}</h3>
                 <p class="py-1">Latitude - ${object.latitude}</p>
                 <p class="py-1">Longitude - ${object.longitude}</p>
-                <p class="py-1">Objekta tips - ${object.object_type}</p>
-                <p class="py-1">Krustojums - ${object.intersection}</p>
+                <p class="py-1">Objekta tips - ${object.type}</p>
+                <p class="py-1">Krustojums - ${object.title}</p>
                 <div class="modal-action">
                   <form method="dialog">
                     <button class="btn btn-error text-white">Close</button>

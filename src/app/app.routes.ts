@@ -30,6 +30,8 @@ import {
 } from "./Components/crud-update/update-unit-placemenet/update-unit-placemenet.component";
 import {UpdatePropertyComponent} from "./Components/crud-update/update-property/update-property.component";
 import {UpdateObjectTypeComponent} from "./Components/crud-update/update-object-type/update-object-type.component";
+import {UpdateUnitComponent} from "./Components/crud-update/update-unit/update-unit.component";
+import {UpdateObjectComponent} from "./Components/crud-update/update-object/update-object.component";
 
 export const routes: Routes = [
   {path: '', component: MapComponent},
@@ -64,6 +66,8 @@ export const routes: Routes = [
           {path: 'unit-placement/:id', component: UpdateUnitPlacemenetComponent},
           {path: 'property/:id', component: UpdatePropertyComponent},
           {path: 'object-type/:id', component: UpdateObjectTypeComponent},
+          {path: 'unit/:id', component: UpdateUnitComponent},
+          {path: 'intersection-object/:id', component: UpdateObjectComponent},
         ]
       }
     ]

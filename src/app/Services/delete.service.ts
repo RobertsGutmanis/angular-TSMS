@@ -29,4 +29,12 @@ export class DeleteService {
   deleteObjectType(id: number): Observable<any> {
     return this.http.delete(`http://127.0.0.1:8000/api/v1/object-types/${id}`)
   }
+
+  deleteUnit(id: number): Observable<any>{
+    return this.http.delete(`http://127.0.0.1:8000/api/v1/units/${id}`)
+  }
+
+  deleteObject(id: number): Observable<any>{
+    return this.http.delete(`http://127.0.0.1:8000/api/v1/objects/${id}`)
+  }
 }

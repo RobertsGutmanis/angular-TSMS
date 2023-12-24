@@ -6,6 +6,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {DisplayIntersectionObject} from "../../../Interfaces/display-intersectionObject.interface";
 import {IntersectionGetSingle} from "../../../Interfaces/intersection-get-single.interface";
 import {ObjectTypeGetSingle} from "../../../Interfaces/object-type-get-single.interface";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-read-intersection-object',
@@ -18,7 +19,7 @@ export class ReadIntersectionObjectComponent implements OnInit {
   objects!: IntersectionObject[]
   objectsToDisplay: DisplayIntersectionObject[] = [];
 
-  constructor(private getService: GetService) {
+  constructor(private getService: GetService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -61,5 +62,9 @@ export class ReadIntersectionObjectComponent implements OnInit {
         alert("Radās kļūda iegūstot datus no servera!")
       }
     })
+  }
+
+  onEdit(id: number): void{
+    this.router.navigate(["crud", "update", "intersection-object", id])
   }
 }

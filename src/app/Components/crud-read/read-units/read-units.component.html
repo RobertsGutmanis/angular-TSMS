@@ -24,7 +24,7 @@
           <td>{{ unit.ipv4 }}</td>
           <td>{{ unit.ipv6 }}</td>
           <td>
-            <button class="btn btn-primary text-white rounded-md">Edit</button>
+            <button class="btn btn-primary text-white rounded-md" (click)="onEdit(unit.id)">Edit</button>
           </td>
         </tr>
       }

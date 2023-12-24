@@ -76,7 +76,7 @@ export class UpdateIntersectionComponent implements OnInit {
         this.router.navigate(["crud/read/intersection"])
       },
       error: (error: HttpErrorResponse): void => {
-        alert("Servera kļūda!")
+        this.successMessage = error.error.message
       }
     })
   }

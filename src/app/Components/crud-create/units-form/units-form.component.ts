@@ -48,7 +48,7 @@ export class UnitsFormComponent implements OnInit {
         this.intersections = response.data
       },
       error: (error: HttpErrorResponse): void => {
-        alert("Radās kļūda iegūstot datus no servera!")
+        alert(error.error.message)
       }
     })
 
@@ -57,7 +57,7 @@ export class UnitsFormComponent implements OnInit {
         this.unitTypes = response.data;
       },
       error: (error: HttpErrorResponse): void => {
-        alert("Radās kļūda iegūstot datus no servera!")
+        alert(error.error.message)
       }
     })
 
@@ -66,7 +66,7 @@ export class UnitsFormComponent implements OnInit {
         this.unitPLacements = response.data;
       },
       error: (error: HttpErrorResponse): void => {
-        alert("Radās kļūda iegūstot datus no servera!")
+        alert(error.error.message)
       }
     })
   }
@@ -100,18 +100,18 @@ export class UnitsFormComponent implements OnInit {
       next: (response: IntersectionObjectGet): void => {
         this.intersectionObjects = response.data
         this.intersectionObjects.forEach((e: IntersectionObject, index: number): void => {
-          this.getService.getSingleObjectType(e.intersection_id).subscribe({
+          this.getService.getSingleObjectType(e.object_type_id).subscribe({
             next: (response: ObjectTypeGetSingle): void => {
               this.intersectionObjects[index].objectType = response.data.type;
             },
             error: (error: HttpErrorResponse): void => {
-              alert("Radās kļūda iegūstot datus no servera!")
+              alert(error.error.message)
             }
           })
         })
       },
       error: (error: HttpErrorResponse): void => {
-        alert("Radās kļūda iegūstot datus no servera!")
+        alert(error.error.message)
       }
     })
   }
