@@ -43,7 +43,7 @@ export class UpdateUnitPlacemenetComponent implements OnInit {
         })
       },
       error: (error: HttpErrorResponse): void => {
-        alert(error.error.message)
+        console.log(error.error.message)
         this.router.navigate(['crud/read/unit-placements'])
       }
     })

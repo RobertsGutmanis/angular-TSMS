@@ -66,11 +66,11 @@ export class GetService {
     return this.http.get(`http://127.0.0.1:8000/api/v1/unit-placements/${id}`)
   }
 
-  getSingleObject(id: number): Observable<any>{
+  getSingleObject(id: number): Observable<any> {
     return this.http.get(`http://127.0.0.1:8000/api/v1/objects/${id}`)
   }
 
-  getObjectsExpanded(): Observable<any>{
+  getObjectsExpanded(): Observable<any> {
     return this.http.get(`http://127.0.0.1:8000/api/v1/objects/expanded`)
   }
 }

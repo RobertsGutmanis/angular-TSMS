@@ -7,7 +7,7 @@
             formControlName="intersection_id"
             id="object-id">
       <option disabled selected>Izvēlaties krustojumu</option>
-      @for (intersection of intersections;track intersection.id) {
+      @for (intersection of intersections; track intersection.id) {
         <option [value]="intersection.id">{{ intersection.title }}</option>
       }
     </select>
@@ -21,7 +21,7 @@
         formControlName="intersection_object_id"
         id="intersection-object-id">
         <option disabled selected>Izvēlaties krustojuma objektu:</option>
-        @for (intersectionObject of intersectionObjects;track intersectionObject.id) {
+        @for (intersectionObject of intersectionObjects; track intersectionObject.id) {
           <option [value]="intersectionObject.id">{{ intersectionObject.objectType }}</option>
         }
       </select>
@@ -33,7 +33,7 @@
         formControlName="unit_type_id"
         id="unit-type-id">
         <option disabled selected>Izvēlaties vienības tipu</option>
-        @for (unitType of unitTypes;track unitType.id) {
+        @for (unitType of unitTypes; track unitType.id) {
           <option [value]="unitType.id">{{ unitType.type }}</option>
         }
       </select>
@@ -45,7 +45,7 @@
         formControlName="unit_placement_id"
         id="unit-placement-id">
         <option disabled selected>Izvēlaties vienības novietojumu</option>
-        @for (placement of unitPlacements;track placement.id) {
+        @for (placement of unitPlacements; track placement.id) {
           <option [value]="placement.id">{{ placement.type }}</option>
         }
       </select>

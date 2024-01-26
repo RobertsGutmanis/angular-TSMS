@@ -64,7 +64,7 @@ export class ReadIntersectionObjectComponent implements OnInit {
     })
   }
 
-  onEdit(id: number): void{
+  onEdit(id: number): void {
     this.router.navigate(["crud", "update", "intersection-object", id])
   }
 }

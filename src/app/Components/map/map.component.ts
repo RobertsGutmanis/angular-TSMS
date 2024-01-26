@@ -5,12 +5,7 @@ import {Intersection} from "../../Interfaces/intersection.interfrace";
 import {GetService} from "../../Services/get.service";
 import {IntersectionGet} from "../../Interfaces/Intersection-get.interface";
 import * as Marker from "../../markers";
-import {IntersectionObjectGet} from "../../Interfaces/intersection_object-get.interface";
-import {IntersectionObject} from "../../Interfaces/intersection_object.interface";
-import {IntersectionGetSingle} from "../../Interfaces/intersection-get-single.interface";
 import {HttpErrorResponse} from "@angular/common/http";
-import {DisplayIntersectionObject} from "../../Interfaces/display-intersectionObject.interface";
-import {ObjectTypeGetSingle} from "../../Interfaces/object-type-get-single.interface";
 import {ObjectsExpandedGet} from "../../Interfaces/objects_expanded-get.interface";
 import {ObjectsExpanded} from "../../Interfaces/objects_expanded.interface";
 
@@ -56,9 +51,6 @@ export class MapComponent implements AfterViewInit {
           this.intersection = response.data
           this.showIntersections(layerGroup)
         },
-        error: (erro: HttpErrorResponse): void => {
-          alert("Radās kļūda iegūstot datus no servera!")
-        }
       })
     } else {
       this.showIntersections(layerGroup)
@@ -68,21 +60,21 @@ export class MapComponent implements AfterViewInit {
   fetchObjects(layerGroup: any, currentZoom: number): void {
     if (this.objects.length === 0) {
       this.getService.getObjectsExpanded().subscribe({
-        next: (response: ObjectsExpandedGet): void=>{
+        next: (response: ObjectsExpandedGet): void => {
           this.objects = response.data
           console.log(this.objects[0])
         },
-        error: (error: HttpErrorResponse): void=>{
-          alert(error.error.message)
+        error: (error: HttpErrorResponse): void => {
+          console.log(error.error.message)
         }
       })
       this.getService.getIntersections().subscribe({
-        next: (value: any): void=>{
+        next: (value: any): void => {
           console.log(value.data[0])
         }
       })
       this.getService.getIntersectionObjects().subscribe({
-        next: (value: any): void=>{
+        next: (value: any): void => {
           console.log(value.data[0])
         }
       })

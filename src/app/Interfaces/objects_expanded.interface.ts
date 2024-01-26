@@ -1,4 +1,4 @@
-export interface ObjectsExpanded{
+export interface ObjectsExpanded {
   id: number,
   intersection_id: number,
   object_type_id: number,

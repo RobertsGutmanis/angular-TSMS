@@ -32,22 +32,12 @@ import {UpdatePropertyComponent} from "./Components/crud-update/update-property/
 import {UpdateObjectTypeComponent} from "./Components/crud-update/update-object-type/update-object-type.component";
 import {UpdateUnitComponent} from "./Components/crud-update/update-unit/update-unit.component";
 import {UpdateObjectComponent} from "./Components/crud-update/update-object/update-object.component";
+import {LoginComponent} from "./Components/login/login.component";
 
 export const routes: Routes = [
   {path: '', component: MapComponent},
   {
     path: 'crud', component: CrudComponent, children: [
-      {
-        path: 'create', component: CrudCreateComponent, children: [
-          {path: 'intersection', component: IntersectionFormComponent},
-          {path: 'intersection-object', component: IntersectionObjectFormComponent},
-          {path: 'object-type', component: ObjectTypeFormComponent},
-          {path: 'units', component: UnitsFormComponent},
-          {path: 'properties', component: PropertiesFormComponent},
-          {path: 'unit-placement', component: UnitPlacementFormComponent},
-          {path: 'unit-type', component: UnitTypeFormComponent},
-        ]
-      },
       {
         path: 'read', component: CrudReadComponent, children: [
           {path: 'intersection', component: ReadIntersectionComponent},
@@ -57,6 +47,17 @@ export const routes: Routes = [
           {path: 'unit-placements', component: ReadUnitPlacemenetsComponent},
           {path: 'properties', component: ReadPropertiesComponent},
           {path: 'units', component: ReadUnitsComponent},
+        ]
+      },
+      {
+        path: 'create', component: CrudCreateComponent, children: [
+          {path: 'intersection', component: IntersectionFormComponent},
+          {path: 'intersection-object', component: IntersectionObjectFormComponent},
+          {path: 'object-type', component: ObjectTypeFormComponent},
+          {path: 'units', component: UnitsFormComponent},
+          {path: 'properties', component: PropertiesFormComponent},
+          {path: 'unit-placement', component: UnitPlacementFormComponent},
+          {path: 'unit-type', component: UnitTypeFormComponent},
         ]
       },
       {
@@ -72,5 +73,6 @@ export const routes: Routes = [
       }
     ]
   },
+  {path: "login", component: LoginComponent},
   {path: "**", redirectTo: 'crud/create'}
 ];

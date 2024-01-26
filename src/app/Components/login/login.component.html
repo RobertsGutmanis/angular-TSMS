@@ -1,0 +1,27 @@
+<div (ngSubmit)="onSubmit()" [formGroup]="formGroup"
+     class="container mx-auto flex justify-center items-center w-full h-full">
+  <form class="max-w-sm mx-auto w-full">
+    <div class="mb-5">
+      <label class="block mb-2 text-sm font-medium text-gray-900" for="email">Your email</label>
+      <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="email" id="email"
+             required
+             type="email">
+    </div>
+    <div class="mb-5">
+      <label class="block mb-2 text-sm font-medium text-gray-900" for="password">Your password</label>
+      <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="password" id="password"
+             required
+             type="password">
+    </div>
+    <button class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center"
+            type="submit">
+      Submit
+    </button>
+
+    @if (errorMessage === "formError") {
+      <p class="font-bold text-red-600">Forma nepareizi aizpildīta!</p>
+    } @else if (errorMessage === "authError") {
+      <p class="font-bold text-red-600">Nepareizs e-pasts vai parole!</p>
+    }
+  </form>
+</div>

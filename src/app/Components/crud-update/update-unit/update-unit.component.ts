@@ -22,14 +22,14 @@ import {IntersectionGetSingle} from "../../../Interfaces/intersection-get-single
 @Component({
   selector: 'app-update-unit',
   standalone: true,
-    imports: [
-        FormsModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './update-unit.component.html',
   styleUrl: './update-unit.component.scss'
 })
-export class UpdateUnitComponent implements OnInit{
+export class UpdateUnitComponent implements OnInit {
   successMessage: string = "none"
   formGroup!: FormGroup;
   unitId: number;
@@ -61,7 +61,7 @@ export class UpdateUnitComponent implements OnInit{
         this.intersections = response.data
       },
       error: (error: HttpErrorResponse): void => {
-        alert(error.error.message)
+        console.log(error.error.message)
       }
     })
 
@@ -70,7 +70,7 @@ export class UpdateUnitComponent implements OnInit{
         this.unitTypes = response.data;
       },
       error: (error: HttpErrorResponse): void => {
-        alert(error.error.message)
+        console.log(error.error.message)
       }
     })
 
@@ -79,17 +79,17 @@ export class UpdateUnitComponent implements OnInit{
         this.unitPlacements = response.data;
       },
       error: (error: HttpErrorResponse): void => {
-        alert(error.error.message)
+        console.log(error.error.message)
       }
     })
 
     this.getService.getSingleUnit(this.unitId).subscribe({
-      next: (response: UnitGetSingle): void=>{
-        const activeUnit: any =  response.data;
+      next: (response: UnitGetSingle): void => {
+        const activeUnit: any = response.data;
         this.getService.getSingleObject(activeUnit.intersection_object_id).subscribe({
-          next: (response: IntersectionObjectGetSingle): void=>{
+          next: (response: IntersectionObjectGetSingle): void => {
             this.getService.getSingleIntersection(response.data.intersection_id).subscribe({
-              next: (response: IntersectionGetSingle): void=>{
+              next: (response: IntersectionGetSingle): void => {
                 this.formGroup.setValue({
                   intersection_id: response.data.id,
                   intersection_object_id: activeUnit.intersection_object_id,
@@ -108,18 +108,18 @@ export class UpdateUnitComponent implements OnInit{
     })
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
     if (this.formGroup.status !== "VALID") {
       this.successMessage = "Forma nepareizi aizpildīta!"
       return
     }
     console.log(this.formGroup.value)
     this.updateService.updateUnit(this.unitId, this.formGroup.value).subscribe({
-      next: (response: any): void=>{
+      next: (response: any): void => {
         this.router.navigate(['crud/read/units'])
       },
-      error: (error: HttpErrorResponse): void=>{
-        alert(error.error.message)
+      error: (error: HttpErrorResponse): void => {
+        console.log(error.error.message)
       }
     })
   }
@@ -135,24 +135,24 @@ export class UpdateUnitComponent implements OnInit{
               this.intersectionObjects[index].objectType = response.data.type;
             },
             error: (error: HttpErrorResponse): void => {
-              alert(error.error.message)
+              console.log(error.error.message)
             }
           })
         })
       },
       error: (error: HttpErrorResponse): void => {
-        alert(error.error.message)
+        console.log(error.error.message)
       }
     })
   }
 
-  onDelete(): void{
+  onDelete(): void {
     this.deleteService.deleteUnit(this.unitId).subscribe({
-      next: (response: any): void=>{
+      next: (response: any): void => {
         this.router.navigate(['crud/read/units'])
       },
-      error: (error: HttpErrorResponse): void=>{
-        alert(error.error.message)
+      error: (error: HttpErrorResponse): void => {
+        console.log(error.error.message)
       }
     })
   }

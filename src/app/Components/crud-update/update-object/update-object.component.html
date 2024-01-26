@@ -8,7 +8,7 @@
       formControlName="intersection_id"
       id="intersection-id_interesection">
       <option disabled selected>Izvēlaties krustojumu</option>
-      @for (intersection of intersections;track intersection.id) {
+      @for (intersection of intersections; track intersection.id) {
         <option [value]="intersection.id">{{ intersection.title }}</option>
       }
     </select>
@@ -20,7 +20,7 @@
       formControlName="object_type_id"
       id="object-type-id_interesection">
       <option disabled selected>Izvēlaties objekta tipu</option>
-      @for (objectType of objectTypes;track objectType.id) {
+      @for (objectType of objectTypes; track objectType.id) {
         <option [value]="objectType.id">{{ objectType.type }}</option>
       }
     </select>

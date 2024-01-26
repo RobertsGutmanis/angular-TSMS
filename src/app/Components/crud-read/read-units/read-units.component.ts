@@ -45,7 +45,7 @@ export class ReadUnitsComponent implements OnInit {
     })
   }
 
-  onEdit(id: number): void{
+  onEdit(id: number): void {
     this.router.navigate(["crud/update/unit", id])
   }
 

@@ -4,6 +4,7 @@ import {Intersection} from "../../../Interfaces/intersection.interfrace";
 import {IntersectionGet} from "../../../Interfaces/Intersection-get.interface";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../Services/auth.service";
 
 @Component({
   selector: 'app-read-intersection',
@@ -15,7 +16,7 @@ import {Router} from "@angular/router";
 export class ReadIntersectionComponent implements OnInit {
   intersections!: Intersection[];
 
-  constructor(private getService: GetService, private router: Router) {
+  constructor(private getService: GetService, private router: Router, private authService: AuthService) {
   }
 
   ngOnInit(): void {

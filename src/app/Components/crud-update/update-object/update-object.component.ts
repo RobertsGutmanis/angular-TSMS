@@ -14,14 +14,14 @@ import {IntersectionObjectGetSingle} from "../../../Interfaces/intersection_obje
 @Component({
   selector: 'app-update-object',
   standalone: true,
-    imports: [
-        FormsModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './update-object.component.html',
   styleUrl: './update-object.component.scss'
 })
-export class UpdateObjectComponent implements OnInit{
+export class UpdateObjectComponent implements OnInit {
   formGroup!: FormGroup;
   intersections!: Intersection[];
   objectTypes!: ObjectType[];
@@ -35,7 +35,7 @@ export class UpdateObjectComponent implements OnInit{
     }
   }
 
-  ngOnInit() : void{
+  ngOnInit(): void {
     this.formGroup = new FormGroup({
       "intersection_id": new FormControl('', [Validators.required, Validators.min(0)]),
       "longitude": new FormControl('', [Validators.required, Validators.min(-180), Validators.max(180)]),
@@ -48,7 +48,7 @@ export class UpdateObjectComponent implements OnInit{
         this.intersections = response.data;
       },
       error: (error: HttpErrorResponse): void => {
-        alert(error.error.message)
+        console.log(error.error.message)
       }
     })
     this.getService.getObjectTypes().subscribe({
@@ -56,12 +56,12 @@ export class UpdateObjectComponent implements OnInit{
         this.objectTypes = response.data
       },
       error: (error: HttpErrorResponse): void => {
-        alert(error.error.message)
+        console.log(error.error.message)
       }
     })
 
     this.getService.getSingleObject(this.objectId).subscribe({
-      next: (response: IntersectionObjectGetSingle): void=>{
+      next: (response: IntersectionObjectGetSingle): void => {
         this.formGroup.setValue({
           intersection_id: response.data.intersection_id,
           longitude: response.data.longitude,
@@ -70,32 +70,32 @@ export class UpdateObjectComponent implements OnInit{
         })
       },
       error: (error: HttpErrorResponse): void => {
-        alert(error.error.message)
+        console.log(error.error.message)
       }
     })
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
     if (this.formGroup.status !== "VALID") {
       this.successMessage = "Forma nepareizi aizpildīta!"
       return
     }
     this.updateService.updateObject(this.objectId, this.formGroup.value).subscribe({
-      next: (response: any): void=>{
+      next: (response: any): void => {
         this.router.navigate(['crud/read/intersection-object'])
       },
-      error: (error: HttpErrorResponse): void=>{
-        alert(error.error.message)
+      error: (error: HttpErrorResponse): void => {
+        console.log(error.error.message)
       }
     })
   }
 
-  onDelete(): void{
+  onDelete(): void {
     this.deleteService.deleteObject(this.objectId).subscribe({
-      next: (response: any): void=>{
+      next: (response: any): void => {
         this.router.navigate(['crud/read/intersection-object'])
       },
-      error: (error: HttpErrorResponse): void=>{
+      error: (error: HttpErrorResponse): void => {
         this.successMessage = error.error.message
       }
     })

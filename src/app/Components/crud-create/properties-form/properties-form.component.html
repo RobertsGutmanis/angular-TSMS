@@ -8,7 +8,7 @@
             formControlName="unit_id"
             id="unit-id">
       <option disabled selected>Izvēlaties vienību</option>
-      @for (unit of units;track unit.id) {
+      @for (unit of units; track unit.id) {
         <option [value]="unit.id">{{ unit.serial_number }}</option>
       }
     </select>
@@ -20,7 +20,7 @@
             formControlName="parent_id"
             id="parent-id">
       <option disabled selected>Izvēlaties vecāku</option>
-      @for (property of properties;track property.id) {
+      @for (property of properties; track property.id) {
         <option [value]="property.id">{{ property.key }} - {{ property.value }}</option>
       }
     </select>
